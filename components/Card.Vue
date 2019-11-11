@@ -7,6 +7,10 @@
             <hr>
             <p class="card-text">Description</p>
             <hr>
+            <div>
+                <b-button variant="primary" float @click="showModal">Edit Book </b-button>
+                <b-button variant="danger" float>Delete Book</b-button>
+            </div>
             <div>Your Rate:
                 <star-rating style="justify-content: center" :star-size="30" v-model="rating" @rating-selected="setRate(rating, book.id)" />
             </div>

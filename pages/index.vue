@@ -29,11 +29,17 @@
         </b-collapse>
       </b-navbar>
     </div>
+    <div class="container-fluid mt-5">
+      <Card class="w-25"/>
+    </div>
   </section>
 </template>
 <script>
+  import Card from "../components/Card"
   export default {
-
+    components: {
+      Card
+    }
   }
 </script>
 

@@ -8,7 +8,7 @@
         <b-collapse is-nav id="nav_collapse">
           <b-navbar type="blue" variant="blue" class="w-100">
             <b-nav-form class="d-flex justify-content-around w-100">
-              <div></div>
+              <Modal />
               <div class="d-flex">
                 <button class="btn btn-outline-primary m-1">
                   SORT BY TITLE
@@ -30,17 +30,20 @@
       </b-navbar>
     </div>
     <div class="container-fluid mt-5">
-      <Card class="w-25"/>
+      <Card class="w-25" />
     </div>
   </section>
 </template>
 <script>
   import Card from "../components/Card"
+  import Modal from "../components/Modal"
   export default {
     components: {
-      Card
+      Card,
+      Modal,
     }
   }
+
 </script>
 
 <style>

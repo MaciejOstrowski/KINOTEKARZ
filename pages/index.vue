@@ -8,7 +8,11 @@
         <b-collapse is-nav id="nav_collapse">
           <b-navbar type="blue" variant="blue" class="w-100">
             <b-nav-form class="d-flex justify-content-around w-100">
-              <div></div>
+              <div>
+                <button class="btn btn-outline-primary d-flex align-items-center m-1">
+                  <i class="material-icons md-24">add</i>
+                </button>
+              </div>
               <div class="d-flex">
                 <button class="btn btn-outline-primary m-1">
                   SORT BY TITLE
@@ -44,5 +48,5 @@
 </script>
 
 <style>
-
+  .material-icons.md-24 { font-size: 24px; }
 </style>

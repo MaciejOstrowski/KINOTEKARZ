@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button variant="primary" @click="showModal">
+    <b-button class="d-flex align-items-center" variant="primary" @click="showModal">
       <i class="material-icons">add</i>
     </b-button>
 
@@ -8,9 +8,20 @@
       <div class="d-block text-center">
         <div class="input-group pb-2">
           <label for="title" class="modalLabels">Title:</label>
-          <input id="title" type="text" aria-label="title" class="d-block w-100 form-control" placeholder="Title...">
+          <input
+            id="title"
+            type="text"
+            aria-label="title"
+            v-model="title"
+            class="d-block w-100 form-control"
+            placeholder="Title...">
           <label for="description" class="modalLabels mt-3">Description:</label>
-          <input id="description" type="text" aria-label="Last name" class="d-block w-100 form-control"
+          <input
+            id="description"
+            type="text"
+            aria-label="Last name"
+            v-model="description"
+            class="d-block w-100 form-control"
             placeholder="Description...">
           <div class="d-block w-100 form-group">
             <label for="Category" class="modalLabels mt-3">Category:</label>
@@ -28,7 +39,7 @@
       </div>
       <div class="d-flex justify-content-between mt-3">
         <b-btn class="col-5" variant="outline-danger" @click="hideModal">Close</b-btn>
-        <b-btn class="col-5" variant="outline-primary">Add book</b-btn>
+        <b-btn class="col-5" variant="outline-primary" @click="addBook">Add book</b-btn>
       </div>
     </b-modal>
   </div>
@@ -36,7 +47,27 @@
 
 <script>
   export default {
+    data() {
+      return {
+          title: "",
+          description: ""
+      }
+    },
+    computed: {
+      showBook() {
+        console.log(title, description)
+        return title
+      }
+    },
     methods: {
+      addBook() {
+        console.log('dodano')
+        this.$store.commit('add_Book', {
+          "index": `${Math.random(48%3)*100}`,
+          "title": this.title,
+          "description": this.description
+        })
+      },
       showModal() {
         this.$refs.myModalRef.show()
       },

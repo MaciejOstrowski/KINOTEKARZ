@@ -1,0 +1,48 @@
+{
+  "status": "ok",
+  "books": [{
+      "index": "1",
+      "title": "To ",
+      "description": "Derry w stanie Maine to miejsce ledwie widoczne na mapie. Dochodzi tu do wyjątkowej eskalacji zbrodni, okrutnych morderstw, gwałtów i tajemniczych wypadków. W kanałach miasteczka zalęgło się To. Bliżej nieokreślone, przybiera najróżniejsze postaci – klauna, ogromnego ptaszyska, głosu w rurach. Poluje na dzieci. Tylko dzieci potrafią dostrzec To. I dlatego właśnie one stają do walki z potworem. Mija dwadzieścia kilka lat i To powraca. Dzieci są już dorosłymi, ale muszą odnaleźć w sobie dziecięcą wiarę, lojalność i odwagę, by skutecznie stawić mu czoła."
+  }, {
+      "index": "2",
+      "title": "Wiedźmin. Tom 1. Ostatnie życzenie ",
+      "description": "Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz. Białowłosego przywiodło do miasta królewskie orędzie: trzy tysiące orenów nagrody za odczarowanie nękającej mieszkańców Wyzimy strzygi."
+  }, {
+      "index": "3",
+      "title": "Mitologia nordycka",
+      "description": "Wielkie nordyckie mity to jeden z korzeni, z których wyrasta nasza tradycja literacka – od Tolkiena, Alana Garnera i Rosemary Sutcliff po Grę o tron i komiksy Marvela. Stały się też inspiracją dla wielu obsypanych nagrodami bestsellerów Neila Gaimana. Teraz sam Gaiman sięga w odległą przeszłość, do oryginalnych źródeł tych opowieści, by przedstawić nam nowe, barwne i porywające wersje największych nordyckich historii."
+  }, {
+      "index": "4",
+      "title": "Gwiezdny pył",
+      "description": "Młody Tristran Thorn zrobi wszystko, byle tylko zdobyć lodowate serce pięknej Victorii – przyniesie jej nawet gwiazdę, której upadek z nieba oglądali razem pewnej nocy. By jednak to uczynić, musi wyprawić się na niezbadane ziemie po drugiej stronie starożytnego i dobrze pilnowanego muru, od którego bierze nazwę ich maleńka wioska."
+  }, {
+      "index": "5",
+      "title": "Uniwersum Metro 2033. Metro 2033 ",
+      "description": "Rok 2033. Świat po zagładzie nuklearnej. Ocalali walczą o przetrwanie w sieci moskiewskiego metra. Ich los trafia w ręce młodego Artema."
+  }, {
+      "index": "6",
+      "title": "Uniwersum Metro 2033. Metro 2034 ",
+      "description": "Rok 2034. W ostatnim schronieniu ludzkości pojawia się znów zagrożenie. Czy rok po starciu z Czarnymi ponownie uda się wygrać walkę o przetrwanie?"
+  }, {
+      "index": "7",
+      "title": "Wiedźmin. Tom 1. Ostatnie życzenie ",
+      "description": "Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz. Białowłosego przywiodło do miasta królewskie orędzie: trzy tysiące orenów nagrody za odczarowanie nękającej mieszkańców Wyzimy strzygi."
+  }, {
+      "index": "8",
+      "title": "Mitologia nordycka",
+      "description": "Wielkie nordyckie mity to jeden z korzeni, z których wyrasta nasza tradycja literacka – od Tolkiena, Alana Garnera i Rosemary Sutcliff po Grę o tron i komiksy Marvela. Stały się też inspiracją dla wielu obsypanych nagrodami bestsellerów Neila Gaimana. Teraz sam Gaiman sięga w odległą przeszłość, do oryginalnych źródeł tych opowieści, by przedstawić nam nowe, barwne i porywające wersje największych nordyckich historii."
+  }, {
+      "index": "9",
+      "title": "Gwiezdny pył",
+      "description": "Młody Tristran Thorn zrobi wszystko, byle tylko zdobyć lodowate serce pięknej Victorii – przyniesie jej nawet gwiazdę, której upadek z nieba oglądali razem pewnej nocy. By jednak to uczynić, musi wyprawić się na niezbadane ziemie po drugiej stronie starożytnego i dobrze pilnowanego muru, od którego bierze nazwę ich maleńka wioska."
+  }, {
+      "index": "10",
+      "title": "Uniwersum Metro 2033. Metro 2033 ",
+      "description": "Rok 2033. Świat po zagładzie nuklearnej. Ocalali walczą o przetrwanie w sieci moskiewskiego metra. Ich los trafia w ręce młodego Artema."
+  }, {
+      "index": "11",
+      "title": "Uniwersum Metro 2033. Metro 2034 ",
+      "description": "Rok 2034. W ostatnim schronieniu ludzkości pojawia się znów zagrożenie. Czy rok po starciu z Czarnymi ponownie uda się wygrać walkę o przetrwanie?"
+  }]
+}

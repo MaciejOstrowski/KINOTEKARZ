@@ -9,7 +9,7 @@
           <hr>
           <div>
               <b-button variant="primary" float @click="showModal">Edit</b-button>
-              <b-button variant="danger" float>Delete</b-button>
+              <b-button variant="danger" float @click="deleteBook">Delete</b-button>
           </div>
           <div>Your Rate:
               <star-rating style="justify-content: center" :star-size="30" v-model="rating" @rating-selected="setRate(rating, book.id)" />
@@ -24,6 +24,7 @@
   import bCard from 'bootstrap-vue/es/components/card/card';
   export default {
     props: {
+      index: String,
       title: String,
       description: String,
       rating: Number,
@@ -39,7 +40,7 @@
     },
     components: {
       'star-rating': StarRating,
-      'b-card': bCard,
+      'b-card': bCard
     },
     computed: {
       truncatedDescription() {
@@ -51,7 +52,9 @@
       }
     },
     methods: {
-      //    EDIT BOOK MODAL
+      deleteBook() {
+        this.$store.commit('delete_Book', { "index": this.index })
+      },
       showModal() {
         this.$refs.myModalRef.show()
       },

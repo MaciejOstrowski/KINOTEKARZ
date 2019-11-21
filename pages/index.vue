@@ -37,6 +37,7 @@
           class="cardWitdh d-flex"
           v-for="book in getBooks"
           :key="book.index"
+          :index="book.index"
           :title="book.title"
           :description="book.description"/>
       </div>

@@ -20,6 +20,10 @@ const createStore = () => {
                 //Vue.set(state, 'books', [...payload])
                 state.books.unshift(payload);
             },
+            delete_Book: (state, payload) => {
+                const index = payload;
+                state.books.splice(index, 1);
+            },
         },
         actions: {
 

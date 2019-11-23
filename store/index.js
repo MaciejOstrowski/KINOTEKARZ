@@ -28,10 +28,17 @@ const createStore = () => {
             // edytowanie ksiazek po indexach
             edit_Book: (state, payload) => {
                 const index = payload.index;
-                state.books = state.books.map(item => item.index === index
-                    ? payload
-                    : item
+                state.books = state.books.map(book => book.index === index
+                    ? { ...book, ...payload }
+                    : book
                 )
+            },
+            add_Rate: (state, payload) => {
+                 const index = payload.index;
+                 state.books = state.books.map(book => book.index === index
+                    ? { ...book, ...payload }
+                    : book
+                 )
             }
         },
         actions: {

@@ -11,7 +11,7 @@
               <EditCard :index="index" :title="title" :truncated-description="truncatedDescription" />
           </div>
           <div>Your Rate:
-              <star-rating style="justify-content: center" :star-size="30" v-model="rating" @rating-selected="setRate(rating, book.id)" />
+              <star-rating style="justify-content: center" :star-size="30" @rating-selected ="setRating" />
           </div>
           <input type="checkbox" v-model="checked">
       </div>
@@ -27,16 +27,16 @@ export default {
         index: String,
         title: String,
         description: String,
-        rating: Number,
         categories: Array,
         subCategories: Array,
     },
     data() {
-    return {
-        editedTitle: "Title",
-        editedDescription: "Description",
-        checked: false,
-    }
+      return {
+          rating: null,
+          editedTitle: "Title",
+          editedDescription: "Description",
+          checked: false,
+      }
     },
     components: {
         'star-rating': StarRating,
@@ -52,7 +52,18 @@ export default {
             return truncDesc
         }
     },
+    watch: {
+      rating(value) {
+        this.$store.commit('add_Rate', {
+            "index": this.index,
+            "rate": `${this.rating}`
+        })
+      }
+    },
      methods: {
+      setRating: function(rating){
+        this.rating = rating;
+      },
       showModal() {
         this.$refs.myModalRef.show()
       },

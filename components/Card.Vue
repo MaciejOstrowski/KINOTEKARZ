@@ -8,8 +8,7 @@
           <p class="description card-text">{{this.truncatedDescription}}</p>
           <hr>
           <div>
-              <b-button variant="primary" float @click="showModal">Edit</b-button>
-              <b-button variant="danger" float @click="deleteBook">Delete</b-button>
+              <EditCard :index="index" :title="title" :truncated-description="truncatedDescription" />
           </div>
           <div>Your Rate:
               <star-rating style="justify-content: center" :star-size="30" v-model="rating" @rating-selected="setRate(rating, book.id)" />
@@ -20,41 +19,40 @@
 </template>
 
 <script>
-  import StarRating from 'vue-star-rating'
-  import bCard from 'bootstrap-vue/es/components/card/card';
-  export default {
+import StarRating from 'vue-star-rating'
+import bCard from 'bootstrap-vue/es/components/card/card';
+import EditCard from './EditCard.vue'
+export default {
     props: {
-      index: String,
-      title: String,
-      description: String,
-      rating: Number,
-      categories: Array,
-      subCategories: Array,
+        index: String,
+        title: String,
+        description: String,
+        rating: Number,
+        categories: Array,
+        subCategories: Array,
     },
     data() {
-      return {
+    return {
         editedTitle: "Title",
         editedDescription: "Description",
         checked: false,
-      }
+    }
     },
     components: {
-      'star-rating': StarRating,
-      'b-card': bCard
+        'star-rating': StarRating,
+        'b-card': bCard,
+        EditCard
     },
     computed: {
-      truncatedDescription() {
-        let truncDesc = this.description;
-        if(this.description.length > 120 ){
-          truncDesc = `${this.description.substring(0, 120)}...`
+        truncatedDescription() {
+            let truncDesc = this.description;
+            if(this.description.length > 120 ){
+              truncDesc = `${this.description.substring(0, 120)}...`
+            }
+            return truncDesc
         }
-        return truncDesc
-      }
     },
-    methods: {
-      deleteBook() {
-        this.$store.commit('delete_Book', { "index": this.index })
-      },
+     methods: {
       showModal() {
         this.$refs.myModalRef.show()
       },
@@ -62,7 +60,7 @@
         this.$refs.myModalRef.hide()
       }
     }
-  }
+}
 </script>
 
 <style>

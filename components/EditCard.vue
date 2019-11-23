@@ -1,10 +1,11 @@
 <template>
   <div>
-    <b-button class="d-flex align-items-center" variant="primary" @click="showModal">
-      <i class="material-icons">add</i>
+    <b-button variant="primary" float @click="showModal">
+      Edit
     </b-button>
+    <b-button variant="danger" float @click="deleteBook">Delete</b-button>
 
-    <b-modal ref="myModalRef" hide-footer title="Add your new book">
+    <b-modal ref="myModalRef2" class="d-flex justify-content-between editModal" hide-footer title="Edit book">
       <div class="d-block text-center">
         <div class="input-group pb-2">
           <label for="title" class="modalLabels">Title:</label>
@@ -12,7 +13,7 @@
             id="title"
             type="text"
             aria-label="title"
-            v-model="title"
+            v-model="editTitle"
             class="d-block w-100 form-control"
             placeholder="Title...">
           <label for="description" class="modalLabels mt-3">Description:</label>
@@ -20,7 +21,7 @@
             id="description"
             type="text"
             aria-label="Last name"
-            v-model="description"
+            v-model="editDescription"
             class="d-block w-100 form-control"
             placeholder="Description...">
           <div class="d-block w-100 form-group">
@@ -39,22 +40,23 @@
       </div>
       <div class="d-flex justify-content-between mt-3">
         <b-btn class="col-5" variant="outline-danger" @click="hideModal">Close</b-btn>
-        <b-btn class="col-5" variant="outline-primary" @click="addBook">Add book</b-btn>
+        <b-btn class="col-5" variant="outline-primary" @click="editBook">Edit book</b-btn>
       </div>
     </b-modal>
   </div>
 </template>
 
 <script>
-  import UUID from 'vue-uuid';
-  import Vue from 'vue'
-
-  Vue.use(UUID);
   export default {
+    props: {
+        index: String,
+        title: String,
+        truncatedDescription: String
+    },
     data() {
       return {
-          title: '',
-          description: ''
+          editTitle: this.title,
+          editDescription: this.truncatedDescription
       }
     },
     computed: {
@@ -64,21 +66,22 @@
       }
     },
     methods: {
-      addBook() {
-        this.$store.commit('add_Book', {
-          "index": this.$uuid.v4(),
-          "title": this.title,
-          "description": this.description
+      editBook() {
+        this.$store.commit('edit_Book', {
+          "index": this.index,
+          "title": this.editTitle,
+          "description": this.editDescription
         })
-        this.title = ''
-        this.description = ''
         this.hideModal()
       },
+      deleteBook() {
+        this.$store.commit('delete_Book', { "index": this.index })
+      },
       showModal() {
-        this.$refs.myModalRef.show()
+        this.$refs.myModalRef2.show()
       },
       hideModal() {
-        this.$refs.myModalRef.hide()
+        this.$refs.myModalRef2.hide()
       }
     }
   }
@@ -86,7 +89,14 @@
 </script>
 
 <style>
+    .editModal {
+        color: black;
+    }
+    .modal-header .close {
+        width: 50px;
+    }
     .modalLabels {
         font-weight: 600;
+        color: black;
     }
 </style>

@@ -16,14 +16,23 @@ const createStore = () => {
             },
         },
         mutations: {
+            // dodaj ksiazke
             add_Book: (state, payload) => {
-                //Vue.set(state, 'books', [...payload])
-                state.books.unshift(payload);
+                state.books.push(payload);
             },
+            // usun ksiazke po index
             delete_Book: (state, payload) => {
-                const index = payload;
-                state.books.splice(index, 1);
+                const index = payload.index;
+                state.books = state.books.filter(book => book.index !== index)
             },
+            // edytowanie ksiazek po indexach
+            edit_Book: (state, payload) => {
+                const index = payload.index;
+                state.books = state.books.map(item => item.index === index
+                    ? payload
+                    : item
+                )
+            }
         },
         actions: {
 

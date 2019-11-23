@@ -68,7 +68,8 @@
         this.$store.commit('add_Book', {
           "index": this.$uuid.v4(),
           "title": this.title,
-          "description": this.description
+          "description": this.description,
+          "rate": ""
         })
         this.title = ''
         this.description = ''

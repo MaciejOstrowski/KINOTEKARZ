@@ -59,12 +59,6 @@
           editDescription: this.truncatedDescription
       }
     },
-    computed: {
-      showBook() {
-        console.log(title, description)
-        return title
-      }
-    },
     methods: {
       editBook() {
         this.$store.commit('edit_Book', {

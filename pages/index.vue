@@ -10,6 +10,7 @@
         <b-collapse is-nav id="nav_collapse">
           <b-navbar type="blue" variant="blue" class="w-100">
             <b-nav-form class="d-flex justify-content-around w-100">
+              <input class="form-control" type="search" v-model="search" placeholder="Search...">
               <Modal />
               <div class="d-flex">
                 <button class="btn btn-outline-primary m-1">
@@ -35,7 +36,7 @@
       <div class="row d-flex justify-content-around">
          <Card
           class="cardWitdh d-flex"
-          v-for="book in getBooks"
+          v-for="book in filteredBooks"
           :key="book.index"
           :index="book.index"
           :title="book.title"
@@ -50,7 +51,8 @@
   export default {
     data() {
       return {
-        books: []
+        filteredBooks: [],
+        search: ""
       }
     },
     components: {
@@ -58,11 +60,17 @@
       Modal,
     },
     computed: {
-      getBooks:{
-        get() {
+      getBooks() {
           return this.$store.getters.getBooks
-        }
       }
+    },
+    watch: {
+      search(value) {
+        this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${value.toLowerCase()}`,0))
+      }
+    },
+    mounted() {
+      this.filteredBooks = this.getBooks
     }
   }
 </script>

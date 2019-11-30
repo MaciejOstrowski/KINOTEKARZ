@@ -13,7 +13,7 @@
               <input class="form-control" type="search" v-model="search" placeholder="Search...">
               <Modal />
               <div class="d-flex">
-                <button class="btn btn-outline-primary m-1">
+                <button class="btn btn-outline-primary m-1" @click.prevent="sortByTitle">
                   SORT BY TITLE
                 </button>
                 <button class="btn btn-outline-primary m-1">
@@ -52,7 +52,8 @@
     data() {
       return {
         filteredBooks: [],
-        search: ""
+        search: "",
+        sortedBy: false
       }
     },
     components: {
@@ -71,6 +72,17 @@
     },
     mounted() {
       this.filteredBooks = this.getBooks
+    },
+    methods: {
+      sortByTitle() {
+        const compare = (a, b) => {
+          return this.sortedBy !== true
+            ? a.title < b.title ? -1 : 1
+            : a.title < b.title ? 1 : -1
+        }
+        this.sortedBy = !this.sortedBy
+        return this.filteredBooks.sort(compare);
+      }
     }
   }
 </script>

@@ -11,7 +11,7 @@
               <EditCard :index="index" :title="title" :truncated-description="truncatedDescription" />
           </div>
           <div>Your Rate:
-              <star-rating style="justify-content: center" :star-size="30" @rating-selected ="setRating" />
+              <star-rating style="justify-content: center" :rating="this.rate" :star-size="30" @rating-selected ="setRating" />
           </div>
           <input type="checkbox" v-model="checked">
       </div>
@@ -29,6 +29,7 @@ export default {
         description: String,
         categories: Array,
         subCategories: Array,
+        rate: Number
     },
     data() {
       return {
@@ -56,8 +57,9 @@ export default {
       rating(value) {
         this.$store.commit('add_Rate', {
             "index": this.index,
-            "rate": `${this.rating}`
+            "rate": this.rating
         })
+        console.log(this.$store.state.books)
       }
     },
      methods: {

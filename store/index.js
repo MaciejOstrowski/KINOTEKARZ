@@ -33,10 +33,9 @@ const createStore = () => {
                     : book
                 )
             },
-            add_Rate: (state, payload) => {
-                 const index = payload.index;
-                 state.books = state.books.map(book => book.index === index
-                    ? { ...book, ...payload }
+            add_Rate: (state, {index, rate}) => {
+                 state.books.map(book => book.index === index
+                    ? { ...book, rate }
                     : book
                  )
             }

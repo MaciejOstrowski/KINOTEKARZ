@@ -16,7 +16,7 @@
                 <button class="btn btn-outline-primary m-1" @click.prevent="sortByTitle">
                   SORT BY TITLE
                 </button>
-                <button class="btn btn-outline-primary m-1">
+                <button class="btn btn-outline-primary m-1" @click.prevent="sortByRates">
                   SORT BY RATES
                 </button>
                 <button class="btn btn-outline-primary m-1">
@@ -40,7 +40,8 @@
           :key="book.index"
           :index="book.index"
           :title="book.title"
-          :description="book.description"/>
+          :description="book.description"
+          :rate="book.rate"/>
       </div>
     </div>
   </section>
@@ -66,6 +67,9 @@
       }
     },
     watch: {
+      filteredBooks(value) {
+        console.log(value)
+      },
       search(value) {
         this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${value.toLowerCase()}`,0))
       }
@@ -79,6 +83,15 @@
           return this.sortedBy !== true
             ? a.title < b.title ? -1 : 1
             : a.title < b.title ? 1 : -1
+        }
+        this.sortedBy = !this.sortedBy
+        return this.filteredBooks.sort(compare);
+      },
+      sortByRates() {
+        const compare = (a, b) => {
+          return this.sortedBy !== true
+            ? a.rate < b.rate ? -1 : 1
+            : a.rate < b.rate ? 1 : -1
         }
         this.sortedBy = !this.sortedBy
         return this.filteredBooks.sort(compare);

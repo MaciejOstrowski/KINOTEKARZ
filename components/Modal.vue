@@ -24,6 +24,16 @@
             class="d-block w-100 form-control"
             placeholder="Description...">
           <div class="d-block w-100 form-group">
+            <label for="Year" class="modalLabels mt-3">Year:</label>
+            <input
+              id="Year"
+              type="text"
+              aria-label="year"
+              v-model="year"
+              class="d-block w-100 form-control"
+              placeholder="Year...">
+          </div>
+          <div class="d-block w-100 form-group">
             <label for="Category" class="modalLabels mt-3">Category:</label>
             <select style="width: 100%" class="form-control" id="Category">
               <option>Option</option>
@@ -54,13 +64,8 @@
     data() {
       return {
           title: '',
-          description: ''
-      }
-    },
-    computed: {
-      showBook() {
-        console.log(title, description)
-        return title
+          description: '',
+          year: ''
       }
     },
     methods: {
@@ -69,10 +74,12 @@
           "index": this.$uuid.v4(),
           "title": this.title,
           "description": this.description,
-          "rate": ""
+          "rate": 0,
+          "year": this.year
         })
         this.title = ''
         this.description = ''
+        this.year = ''
         this.hideModal()
       },
       showModal() {

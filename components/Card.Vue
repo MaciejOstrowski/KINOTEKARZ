@@ -3,12 +3,13 @@
       <img src="../assets/img/blank-filmstrip-png-32.png" style="height: 200px" alt="book picture">
       <div class="card-body text-center">
           <h5 class="card-title">{{this.title}}</h5>
-          <h6 class="card-subtitle text-muted">Sci-Fi</h6>
+          <h6 class="card-subtitle text-muted">{{ this.year ? `(${this.year})` : ''}}</h6>
+          <h6 class="card-subtitle text-muted mt-1">Sci-Fi</h6>
           <hr>
           <p class="description card-text">{{this.truncatedDescription}}</p>
           <hr>
           <div>
-              <EditCard :index="index" :title="title" :truncated-description="truncatedDescription" />
+              <EditCard :index="index" :title="title" :truncated-description="truncatedDescription" :rate="rate" :year="year" />
           </div>
           <div>Your Rate:
               <star-rating style="justify-content: center" :rating="this.rate" :star-size="30" @rating-selected ="setRating" />
@@ -29,7 +30,8 @@ export default {
         description: String,
         categories: Array,
         subCategories: Array,
-        rate: Number
+        rate: Number,
+        year: String
     },
     data() {
       return {
@@ -59,7 +61,6 @@ export default {
             "index": this.index,
             "rate": this.rating
         })
-        console.log(this.$store.state.books)
       }
     },
      methods: {

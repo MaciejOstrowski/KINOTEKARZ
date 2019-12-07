@@ -17,7 +17,7 @@ const createStore = () => {
         },
         mutations: {
             // dodaj ksiazke
-            add_Book: (state, payload) => {
+            add_Book(state, payload)  {
                 state.books.push(payload);
             },
             // usun ksiazke po index
@@ -34,7 +34,7 @@ const createStore = () => {
                 )
             },
             add_Rate: (state, {index, rate}) => {
-                 state.books.map(book => book.index === index
+                 state.books = state.books.map(book => book.index === index
                     ? { ...book, rate }
                     : book
                  )

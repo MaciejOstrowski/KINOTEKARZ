@@ -19,7 +19,7 @@
                 <button class="btn btn-outline-primary m-1" @click.prevent="sortByRates">
                   SORT BY RATES
                 </button>
-                <button class="btn btn-outline-primary m-1">
+                <button class="btn btn-outline-primary m-1" @click.prevent="sortByYear">
                   SORT BY YEAR
                 </button>
               </div>
@@ -41,7 +41,8 @@
           :index="book.index"
           :title="book.title"
           :description="book.description"
-          :rate="book.rate"/>
+          :rate="book.rate"
+          :year="book.year"/>
       </div>
     </div>
   </section>
@@ -54,7 +55,9 @@
       return {
         filteredBooks: [],
         search: "",
-        sortedBy: false
+        isSortedByTitle: false,
+        isSortedByRate: false,
+        isSortedByYear: false
       }
     },
     components: {
@@ -63,12 +66,12 @@
     },
     computed: {
       getBooks() {
-          return this.$store.getters.getBooks
+        return this.$store.getters.getBooks
       }
     },
     watch: {
-      filteredBooks(value) {
-        console.log(value)
+      getBooks(value) {
+        this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${this.search.toLowerCase()}`,0))
       },
       search(value) {
         this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${value.toLowerCase()}`,0))
@@ -80,21 +83,30 @@
     methods: {
       sortByTitle() {
         const compare = (a, b) => {
-          return this.sortedBy !== true
+          return this.isSortedByTitle !== true
             ? a.title < b.title ? -1 : 1
             : a.title < b.title ? 1 : -1
         }
-        this.sortedBy = !this.sortedBy
+        this.isSortedByTitle = !this.isSortedByTitle
         return this.filteredBooks.sort(compare);
       },
       sortByRates() {
         const compare = (a, b) => {
-          return this.sortedBy !== true
+          return this.isSortedByRate !== true
             ? a.rate < b.rate ? -1 : 1
             : a.rate < b.rate ? 1 : -1
         }
-        this.sortedBy = !this.sortedBy
-        return this.filteredBooks.sort(compare);
+        this.isSortedByRate = !this.isSortedByRate
+        this.filteredBooks = this.filteredBooks.sort(compare);
+      },
+      sortByYear() {
+        const compare = (a, b) => {
+          return this.isSortedByYear !== true
+            ? a.year < b.year ? -1 : 1
+            : a.year < b.year ? 1 : -1
+        }
+        this.isSortedByYear = !this.isSortedByYear
+        this.filteredBooks = this.filteredBooks.sort(compare);
       }
     }
   }

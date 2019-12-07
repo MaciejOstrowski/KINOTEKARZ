@@ -25,6 +25,16 @@
             class="d-block w-100 form-control"
             placeholder="Description...">
           <div class="d-block w-100 form-group">
+            <label for="Year" class="modalLabels mt-3">Year:</label>
+            <input
+              id="Year"
+              type="text"
+              aria-label="year"
+              v-model="editYear"
+              class="d-block w-100 form-control"
+              placeholder="Year...">
+          </div>
+          <div class="d-block w-100 form-group">
             <label for="Category" class="modalLabels mt-3">Category:</label>
             <select style="width: 100%" class="form-control" id="Category">
               <option>Option</option>
@@ -51,12 +61,15 @@
     props: {
         index: String,
         title: String,
-        truncatedDescription: String
+        truncatedDescription: String,
+        rate: this.rate,
+        year: this.year
     },
     data() {
       return {
           editTitle: this.title,
-          editDescription: this.truncatedDescription
+          editDescription: this.truncatedDescription,
+          editYear: this.year
       }
     },
     methods: {
@@ -64,7 +77,9 @@
         this.$store.commit('edit_Book', {
           "index": this.index,
           "title": this.editTitle,
-          "description": this.editDescription
+          "description": this.editDescription,
+          "rate": this.rate,
+          "year": this.editYear
         })
         this.hideModal()
       },

@@ -86,6 +86,8 @@
         this.$refs.myModalRef.show()
       },
       hideModal() {
+        this.title = ""
+        this.description = ""
         this.$refs.myModalRef.hide()
       }
     }
@@ -94,7 +96,7 @@
 </script>
 
 <style>
-    .modalLabels {
-        font-weight: 600;
-    }
+  .modalLabels {
+      font-weight: 600;
+  }
 </style>

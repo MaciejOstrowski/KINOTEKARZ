@@ -10,7 +10,17 @@
         <b-collapse is-nav id="nav_collapse">
           <b-navbar type="blue" variant="blue" class="w-100">
             <b-nav-form class="d-flex justify-content-around w-100">
-              <input class="form-control" type="search" v-model="search" placeholder="Search...">
+              <div>
+                <input class="form-control" type="search" v-model="search" placeholder="Search...">
+                <b-dropdown v-if="filterType === 'title'" id="searchBy" text="By title" variant="primary">
+                  <b-dropdown-item @click='setFilterType("title")'>By title</b-dropdown-item>
+                  <b-dropdown-item @click='setFilterType("category")'>By category</b-dropdown-item>
+                </b-dropdown>
+                <b-dropdown v-else id="searchBy" text="By category" variant="primary">
+                  <b-dropdown-item @click='setFilterType("title")'>By title</b-dropdown-item>
+                  <b-dropdown-item @click='setFilterType("category")'>By category</b-dropdown-item>
+                </b-dropdown>
+              </div>
               <Modal />
               <div class="d-flex">
                 <button class="btn btn-outline-primary m-1" @click.prevent="sortByTitle">
@@ -35,14 +45,16 @@
     <div class="container-fluid mt-5">
       <div class="row d-flex justify-content-around">
          <Card
-          class="cardWitdh d-flex"
-          v-for="book in filteredBooks"
-          :key="book.index"
-          :index="book.index"
-          :title="book.title"
-          :description="book.description"
-          :rate="book.rate"
-          :year="book.year"/>
+            class="cardWitdh d-flex"
+            v-for="book in filteredBooks"
+            :key="book.index"
+            :index="book.index"
+            :title="book.title"
+            :description="book.description"
+            :rate="book.rate"
+            :year="book.year"
+            :category="book.category"
+            :subcategory="book.subcategory"/>
       </div>
     </div>
   </section>
@@ -53,6 +65,7 @@
   export default {
     data() {
       return {
+        filterType: "title",
         filteredBooks: [],
         search: "",
         isSortedByTitle: false,
@@ -71,16 +84,22 @@
     },
     watch: {
       getBooks(value) {
-        this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${this.search.toLowerCase()}`,0))
+        this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${this.search}`))
       },
       search(value) {
-        this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${value.toLowerCase()}`,0))
+        this.filteredBooks = this.filterType === "title"
+          ? this.getBooks.filter(book => book.title.toLowerCase().includes(`${value}`))
+          : this.getBooks.filter(book => book.subcategory.toLowerCase().includes(`${value}`))
       }
     },
     mounted() {
       this.filteredBooks = this.getBooks
     },
     methods: {
+      setFilterType(type) {
+        this.filterType = type
+        this.search = ""
+      },
       sortByTitle() {
         const compare = (a, b) => {
           return this.isSortedByTitle !== true

@@ -84,7 +84,9 @@
     },
     watch: {
       getBooks(value) {
-        this.filteredBooks = this.getBooks.filter(book => book.title.includes(`${this.search}`))
+        this.filteredBooks = this.filterType === "title"
+          ? this.getBooks.filter(book => book.title.toLowerCase().includes(`${this.search}`))
+          : this.getBooks.filter(book => book.subcategory.toLowerCase().includes(`${this.search}`))
       },
       search(value) {
         this.filteredBooks = this.filterType === "title"
@@ -103,11 +105,14 @@
       sortByTitle() {
         const compare = (a, b) => {
           return this.isSortedByTitle !== true
-            ? a.title < b.title ? -1 : 1
-            : a.title < b.title ? 1 : -1
+            ? a.title < b.title ? 1 : -1
+            : a.title < b.title ? -1 : 1
         }
         this.isSortedByTitle = !this.isSortedByTitle
-        return this.filteredBooks.sort(compare);
+        this.filteredBooks = this.filteredBooks.sort(compare);
+
+        this.isSortedByRate = false
+        this.isSortedByYear = false
       },
       sortByRates() {
         const compare = (a, b) => {
@@ -117,6 +122,9 @@
         }
         this.isSortedByRate = !this.isSortedByRate
         this.filteredBooks = this.filteredBooks.sort(compare);
+
+        this.isSortedByTitle = false
+        this.isSortedByYear = false
       },
       sortByYear() {
         const compare = (a, b) => {
@@ -126,6 +134,9 @@
         }
         this.isSortedByYear = !this.isSortedByYear
         this.filteredBooks = this.filteredBooks.sort(compare);
+
+        this.isSortedByTitle = false
+        this.isSortedByRate = false
       }
     }
   }

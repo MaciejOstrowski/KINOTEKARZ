@@ -16,12 +16,12 @@
             class="d-block w-100 form-control"
             placeholder="Title...">
           <label for="description" class="modalLabels mt-3">Description:</label>
-          <input
+          <textarea
             type="text"
-            aria-label="Last name"
-            v-model="editDescription"
             class="d-block w-100 form-control"
-            placeholder="Description...">
+            id="exampleFormControlTextarea1"
+            v-model="editDescription" rows="3"
+            placeholder="Description..."></textarea>
           <div class="d-block w-100 form-group">
             <label for="Year" class="modalLabels mt-3">Year:</label>
             <input

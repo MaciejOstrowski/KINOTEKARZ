@@ -23,7 +23,7 @@ const createStore = () => {
         mutations: {
             // dodaj ksiazke
             add_Book(state, payload)  {
-                state.books.push(payload);
+                state.books.unshift(payload);
             },
             // usun ksiazke po index
             delete_Book: (state, payload) => {

@@ -2,19 +2,30 @@
     <div class="card bg-dark text-white">
       <img src="../assets/img/blank-filmstrip-png-32.png" style="height: 200px" alt="book picture">
       <div class="card-body text-center">
-          <h5 class="card-title">{{this.title}}</h5>
-          <h6 class="card-subtitle text-muted">{{ this.year ? `(${this.year})` : ''}}</h6>
-          <h6 class="card-subtitle text-muted mt-1">Sci-Fi</h6>
-          <hr>
-          <p class="description card-text">{{this.truncatedDescription}}</p>
-          <hr>
-          <div>
-              <EditCard :index="index" :title="title" :truncated-description="truncatedDescription" :rate="rate" :year="year" />
-          </div>
-          <div>Your Rate:
-              <star-rating style="justify-content: center" :rating="this.rate" :star-size="30" @rating-selected ="setRating" />
-          </div>
-          <input type="checkbox" v-model="checked">
+        <h5 class="card-title">{{this.title}}</h5>
+        <h6 class="card-subtitle text-muted">{{ this.year ? `(${this.year})` : ''}}</h6>
+        <h6 class="card-subtitle text-muted mt-1">
+          {{this.category ? this.category : ''}}
+          {{this.subcategory ? ',' : ''}}
+          {{this.subcategory ? this.subcategory : ''}}
+        </h6>
+        <hr>
+        <p class="description card-text">{{this.truncatedDescription}}</p>
+        <hr>
+        <div>
+            <EditCard
+              :index="index"
+              :title="title"
+              :truncated-description="truncatedDescription"
+              :rate="rate"
+              :year="year"
+              :category="category"
+              :subcategory="subcategory"/>
+        </div>
+        <div>Your Rate:
+            <star-rating style="justify-content: center" :rating="this.rate" :star-size="30" @rating-selected ="setRating" />
+        </div>
+        <input type="checkbox" v-model="checked">
       </div>
     </div>
 </template>
@@ -31,7 +42,9 @@ export default {
         categories: Array,
         subCategories: Array,
         rate: Number,
-        year: String
+        year: String,
+        category: String,
+        subcategory: String
     },
     data() {
       return {

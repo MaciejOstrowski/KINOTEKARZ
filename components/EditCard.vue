@@ -10,7 +10,6 @@
         <div class="input-group pb-2">
           <label for="title" class="modalLabels">Title:</label>
           <input
-            id="title"
             type="text"
             aria-label="title"
             v-model="editTitle"
@@ -18,7 +17,6 @@
             placeholder="Title...">
           <label for="description" class="modalLabels mt-3">Description:</label>
           <input
-            id="description"
             type="text"
             aria-label="Last name"
             v-model="editDescription"
@@ -27,7 +25,6 @@
           <div class="d-block w-100 form-group">
             <label for="Year" class="modalLabels mt-3">Year:</label>
             <input
-              id="Year"
               type="text"
               aria-label="year"
               v-model="editYear"
@@ -36,14 +33,16 @@
           </div>
           <div class="d-block w-100 form-group">
             <label for="Category" class="modalLabels mt-3">Category:</label>
-            <select style="width: 100%" class="form-control" id="Category">
-              <option>Option</option>
+            <select style="width: 100%" class="form-control" id="Category" v-model="selectedCategory" placeholder="Choose category...">
+              <option v-for="(category, index) in getCategoriesList.categories" :value="category" :key="index">{{category}}</option>
             </select>
           </div>
           <div class="d-block w-100 form-group">
             <label for="Subcategory" class="modalLabels mt-3">Subcategory:</label>
-            <select style="width: 100%" class="form-control" id="Subcategory">
-              <option>Option</option>
+            <select style="width: 100%" class="form-control" id="Subcategory" v-model="selectedSubcategory" placeholder="Choose subcategory...">
+              <option v-for="(subcategory, index) in getCategoriesList.subcategories[`${this.selectedCategory}`]" :value="subcategory" :key="index">
+                {{subcategory}}
+              </option>
             </select>
           </div>
         </div>
@@ -62,14 +61,23 @@
         index: String,
         title: String,
         truncatedDescription: String,
-        rate: this.rate,
-        year: this.year
+        rate: Number,
+        year: String,
+        category: String,
+        subcategory: String
     },
     data() {
       return {
           editTitle: this.title,
           editDescription: this.truncatedDescription,
-          editYear: this.year
+          editYear: this.year,
+          selectedCategory: this.category,
+          selectedSubcategory: this.subcategory
+      }
+    },
+    computed: {
+      getCategoriesList() {
+        return this.$store.getters.getCategoriesList
       }
     },
     methods: {
@@ -79,7 +87,9 @@
           "title": this.editTitle,
           "description": this.editDescription,
           "rate": this.rate,
-          "year": this.editYear
+          "year": this.editYear,
+          "category": this.selectedCategory,
+          "subcategory": this.selectedSubcategory
         })
         this.hideModal()
       },

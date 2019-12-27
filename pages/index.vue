@@ -34,8 +34,8 @@
                 </button>
               </div>
               <div>
-                <button class="btn btn-outline-danger m-1" @click.prevent="getJson">BOOKS</button>
-                <button class="btn btn-outline-danger m-1" @click.prevent="deleteChecked">MOVIES</button>
+                <button class="btn btn-outline-danger m-1" @click.prevent="switchPage(true)">BOOKS</button>
+                <button class="btn btn-outline-danger m-1" @click.prevent="switchPage(false)">MOVIES</button>
               </div>
             </b-nav-form>
           </b-navbar>
@@ -46,7 +46,7 @@
       <div class="row d-flex justify-content-around">
          <Card
             class="cardWitdh d-flex"
-            v-for="book in filteredBooks"
+            v-for="book in isBooksPage ? filteredBooks : filteredMovies"
             :key="book.index"
             :index="book.index"
             :title="book.title"
@@ -67,10 +67,12 @@
       return {
         filterType: "title",
         filteredBooks: [],
+        filteredMovies: [],
         search: "",
         isSortedByTitle: false,
         isSortedByRate: false,
-        isSortedByYear: false
+        isSortedByYear: false,
+        isBooksPage: true,
       }
     },
     components: {
@@ -80,9 +82,15 @@
     computed: {
       getBooks() {
         return this.$store.getters.getBooks
-      }
+      },
+      getMovies() {
+        return this.$store.getters.getMovies
+      },
     },
     watch: {
+      filteredMovies(value) {
+        console.log(value)
+      },
       getBooks(value) {
         this.filteredBooks = this.filterType === "title"
           ? this.getBooks.filter(book => book.title.toLowerCase().includes(`${this.search}`))
@@ -96,8 +104,12 @@
     },
     mounted() {
       this.filteredBooks = this.getBooks
+      this.filteredMovies = this.getMovies
     },
     methods: {
+      switchPage(page) {
+        this.isBooksPage = page
+      },
       setFilterType(type) {
         this.filterType = type
         this.search = ""

@@ -1,23 +1,33 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import myJson from '~/static/books.json'
-import categories from '~/static/booksCategories.json'
+import BooksList from '~/static/books.json'
+import MoviesList from '~/static/movies.json'
+import booksCategories from '~/static/booksCategories.json'
+import moviesCategories from '~/static/moviesCategories.json'
 Vue.use(VueResource)
 
 
 const createStore = () => {
     return new Vuex.Store({
         state: {
-            books: myJson.books,
-            categoriesList: categories
+            books: BooksList.books,
+            booksCategories: booksCategories,
+            movies: MoviesList.movies,
+            moviesCategories: moviesCategories
         },
         getters: {
             getBooks: state => {
               return state.books
             },
             getCategoriesList: state => {
-                return state.categoriesList
+                return state.booksCategories
+            },
+            getMovies: state => {
+                return state.movies
+            },
+            getCategoriesListMovies: state => {
+                return state.moviesCategories
             }
         },
         mutations: {

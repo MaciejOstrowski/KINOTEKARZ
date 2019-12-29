@@ -25,11 +25,20 @@ module.exports = {
   modules: [
     ["bootstrap-vue/nuxt"],
     ['nuxt-material-design-icons'],
+    ['nuxt-vue-material', {
+      theme: 'default-dark',
+      components: ['MdIcon', 'MdSwitch']
+    }],
   ],
   build: {
     /*
     ** Run ESLint on save
     */
+    postcss: {
+      plugins: {
+        'postcss-custom-properties': false
+      }
+    },
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({

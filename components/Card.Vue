@@ -22,8 +22,11 @@
               :category="category"
               :subcategory="subcategory"/>
         </div>
-        <div>Your Rate:
-            <star-rating style="justify-content: center" :rating="this.rate" :star-size="30" @rating-selected ="setRating" />
+        <div class="">Your Rate:
+            <div class="d-flex justify-content-center align-items-center">
+              <span><md-icon class="">add</md-icon></span>
+              <star-rating style="justify-content: center" :rating="this.rate" :star-size="30" @rating-selected ="setRating" />
+            </div>
         </div>
         <input type="checkbox" v-model="checked">
       </div>
@@ -34,6 +37,7 @@
 import StarRating from 'vue-star-rating'
 import bCard from 'bootstrap-vue/es/components/card/card';
 import EditCard from './EditCard.vue'
+
 export default {
     props: {
         index: String,
@@ -57,7 +61,7 @@ export default {
     components: {
         'star-rating': StarRating,
         'b-card': bCard,
-        EditCard
+        EditCard,
     },
     computed: {
         truncatedDescription() {

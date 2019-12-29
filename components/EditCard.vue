@@ -8,7 +8,16 @@
     <b-modal ref="myModalRef2" class="d-flex justify-content-between editModal" hide-footer title="Edit book">
       <div class="d-block text-center">
         <div class="input-group pb-2">
-          <label for="title" class="modalLabels">Title:</label>
+          <div class="d-flex w-100 justify-content-between">
+            <label for="title" class="modalLabels">Title:</label>
+            <div class="d-flex align-items-center">
+              <span class="mr-2">Is book borrowed: </span>
+              <div class="d-flex custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1"></label>
+              </div>
+            </div>
+          </div>
           <input
             type="text"
             aria-label="title"
@@ -68,6 +77,7 @@
     },
     data() {
       return {
+          isBookBorrowed: false,
           editTitle: this.title,
           editDescription: this.truncatedDescription,
           editYear: this.year,
@@ -108,6 +118,9 @@
 </script>
 
 <style>
+    .md-switch {
+      display: flex;
+    }
     .editModal {
         color: black;
     }

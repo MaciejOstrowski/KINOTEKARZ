@@ -2,7 +2,12 @@
     <div class="card bg-dark text-white">
       <img src="../assets/img/blank-filmstrip-png-32.png" style="height: 200px" alt="book picture">
       <div class="card-body text-center">
-        <h5 class="card-title">{{this.title}}</h5>
+        <h5 class="card-title">
+          <NoteModal
+              :index="index"
+              :cardNote="cardNote"/>
+          <!-- <md-icon class="position-absolute" style="left: 25px">announcement</md-icon> -->
+          {{this.title}}</h5>
         <h6 class="card-subtitle text-muted">{{ this.year ? `(${this.year})` : ''}}</h6>
         <h6 class="card-subtitle text-muted mt-1">
           {{this.category ? this.category : ''}}
@@ -37,6 +42,7 @@
 import StarRating from 'vue-star-rating'
 import bCard from 'bootstrap-vue/es/components/card/card';
 import EditCard from './EditCard.vue'
+import NoteModal from './NoteModal.vue'
 
 export default {
     props: {
@@ -48,7 +54,8 @@ export default {
         rate: Number,
         year: String,
         category: String,
-        subcategory: String
+        subcategory: String,
+        cardNote: String
     },
     data() {
       return {
@@ -62,6 +69,7 @@ export default {
         'star-rating': StarRating,
         'b-card': bCard,
         EditCard,
+        NoteModal
     },
     computed: {
         truncatedDescription() {

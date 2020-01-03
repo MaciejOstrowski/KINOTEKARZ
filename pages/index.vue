@@ -23,13 +23,19 @@
               </div>
               <Modal />
               <div class="d-flex">
-                <button class="btn btn-outline-primary m-1" @click.prevent="sortByTitle">
+                <button
+                  class="m-1" @click.prevent="sortByTitle"
+                  :class='selectedButton === "sortTitle" ? "btn btn-primary" : "btn btn-outline-primary"'>
                   SORT BY TITLE
                 </button>
-                <button class="btn btn-outline-primary m-1" @click.prevent="sortByRates">
+                <button
+                  class="m-1" @click.prevent="sortByRates"
+                  :class='selectedButton === "sortRate" ? "btn btn-primary" : "btn btn-outline-primary"'>
                   SORT BY RATES
                 </button>
-                <button class="btn btn-outline-primary m-1" @click.prevent="sortByYear">
+                <button
+                  class="m-1" @click.prevent="sortByYear"
+                  :class='selectedButton === "sortYear" ? "btn btn-primary" : "btn btn-outline-primary"'>
                   SORT BY YEAR
                 </button>
               </div>
@@ -74,6 +80,7 @@
         isSortedByRate: false,
         isSortedByYear: false,
         isBooksPage: true,
+        selectedButton: ''
       }
     },
     components: {
@@ -126,6 +133,8 @@
 
         this.isSortedByRate = false
         this.isSortedByYear = false
+
+        this.selectedButton = 'sortTitle'
       },
       sortByRates() {
         const compare = (a, b) => {
@@ -138,6 +147,8 @@
 
         this.isSortedByTitle = false
         this.isSortedByYear = false
+
+        this.selectedButton = 'sortRate'
       },
       sortByYear() {
         const compare = (a, b) => {
@@ -150,6 +161,8 @@
 
         this.isSortedByTitle = false
         this.isSortedByRate = false
+
+        this.selectedButton = 'sortYear'
       }
     }
   }
@@ -162,5 +175,12 @@
   }
   .cardWitdh {
     width: 30vw !important;
+  }
+  .btn .btn-primary:not(:focus),
+  .btn .btn-primary:active,
+  .btn .btn-primary:hover,
+  .btn .btn-primary:focus {
+    color: white !important;
+    background-color: #007BFF !important;
   }
 </style>

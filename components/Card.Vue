@@ -6,7 +6,6 @@
           <NoteModal
               :index="index"
               :cardNote="cardNote"/>
-          <!-- <md-icon class="position-absolute" style="left: 25px">announcement</md-icon> -->
           {{this.title}}</h5>
         <h6 class="card-subtitle text-muted">{{ this.year ? `(${this.year})` : ''}}</h6>
         <h6 class="card-subtitle text-muted mt-1">

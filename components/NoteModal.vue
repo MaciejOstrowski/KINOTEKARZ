@@ -1,11 +1,9 @@
 <template>
   <div>
-    <!-- <b-button variant="primary" float @click="showModal">
-      Edit
-    </b-button> -->
-    <a class="position-absolute" style="left: 25px" @click="showModal"><md-icon  @click="showModal">announcement</md-icon></a>
+    <a class="note position-absolute cursor-po" style="left: 25px" @click="showModal">
+        <md-icon>announcement</md-icon></a>
 
-    <b-modal ref="myModalRef2" class="d-flex justify-content-between editModal" hide-footer title="Edit Note">
+    <b-modal ref="myModalRef2" class="d-flex justify-content-between noteModal" hide-footer title="Edit Note">
       <div class="d-block text-center">
         <div class="input-group pb-2">
           <textarea
@@ -35,6 +33,11 @@
           editedCardNote: this.cardNote
       }
     },
+    watch: {
+        cardNote(value) {
+            this.editedCardNote = value
+        }
+    },
     methods: {
       editCardNote() {
         this.$store.commit('edit_Book', {
@@ -55,17 +58,12 @@
 </script>
 
 <style>
-    .md-switch {
-      display: flex;
-    }
-    .editModal {
+    .noteModal {
         color: black;
+
     }
-    .modal-header .close {
-        width: 50px;
-    }
-    .modalLabels {
-        font-weight: 600;
-        color: black;
+
+    .note {
+        cursor: pointer;
     }
 </style>

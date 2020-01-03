@@ -60,7 +60,8 @@
             :rate="book.rate"
             :year="book.year"
             :category="book.category"
-            :subcategory="book.subcategory"/>
+            :subcategory="book.subcategory"
+            :cardNote="book.cardNote"/>
       </div>
     </div>
   </section>

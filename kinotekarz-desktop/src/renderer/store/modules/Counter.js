@@ -1,5 +1,30 @@
+import BooksList from '../../../../../static/books.json'
+import MoviesList from '../../../../../static/movies.json'
+import booksCategories from '../../../../../static/booksCategories.json'
+import moviesCategories from '../../../../../static/moviesCategories.json'
+
 const state = {
-  main: 0
+  state: {
+    books: BooksList.books,
+    booksCategories: booksCategories,
+    movies: MoviesList.movies,
+    moviesCategories: moviesCategories
+  }
+}
+
+const getters = {
+  getBooks: state => {
+    return state.books
+  },
+  getCategoriesList: state => {
+    return state.booksCategories
+  },
+  getMovies: state => {
+    return state.movies
+  },
+  getCategoriesListMovies: state => {
+    return state.moviesCategories
+  }
 }
 
 const mutations = {
@@ -21,5 +46,6 @@ const actions = {
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters
 }
